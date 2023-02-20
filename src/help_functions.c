@@ -61,10 +61,7 @@ int is_diagonal(matrix_t *A) {
   int status = 1;
   for (int i = 0; i < A->rows; i++) {
     for (int j = 0; j < A->columns; j++) {
-      if (i == j) {
-        continue;
-      }
-      if (A->matrix[i][j] != 0) {
+      if (A->matrix[i][j] != 0 && i != j) {
         status = 0;
       }
     }
