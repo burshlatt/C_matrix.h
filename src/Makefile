@@ -16,21 +16,15 @@ test: s21_matrix.a
 
 gcov_report: s21_matrix.a
 	$(CC) $(FLAGS) --coverage unit_tests.c s21_*.c s21_matrix.a $(TEST_LIBS) -o gcov_test
-	chmod +x *
 	./gcov_test
-	gcov s21_*.gcda
-	gcovr -b
-	gcovr --html-details -o report.html
-	open report.html
+	lcov -t "s21_matrix" -o s21_matrix.info -c -d .
+	genhtml -o report s21_matrix.info
+	open ./report/index.html
 
 clean:
-	rm -rf s21_matrix
-	rm -rf *.o
-	rm -rf *.a
-	rm -rf *.gcno
-	rm -rf *.gcda
-	rm -rf *.gcov
-	rm -rf *.html
-	rm -rf *.css
-	rm -rf main
-	rm -rf gcov_test
+	rm -rf *.o *.a *.gcno *.gcda *.info report gcov_test s21_matrix
+
+clang:
+	cp ../materials/linters/.clang-format .
+	clang-format -n *.c *.h
+	rm .clang-format

@@ -12,7 +12,7 @@
 #define SUCCESS 1
 #define FAILURE 0
 
-#define EPSILON 0.000000001
+#define EPSILON 0.0000001
 
 typedef struct matrix_struct {
   double **matrix;

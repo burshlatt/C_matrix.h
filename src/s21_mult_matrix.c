@@ -6,7 +6,7 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   int status_b = is_correct(B);
   s21_create_matrix(A->rows, B->columns, result);
   if (status_a == OK && status_b == OK) {
-    if (result->rows == result->columns) {
+    if (B->rows == A->columns) {
       for (int i = 0; i < result->rows; i++) {
         for (int j = 0; j < result->columns; j++) {
           result->matrix[i][j] = 0.0;
