@@ -9,7 +9,7 @@ int s21_mult_number(matrix_t *A, double number, matrix_t *result) {
         result->matrix[i][j] = A->matrix[i][j] * number;
       }
     }
-  } else if (status == OK && number == INFINITY && number == NAN) {
+  } else if (status == OK && (isinf(number) || isnan(number))) {
     status = CALCULATION_ERROR;
   }
   return status;

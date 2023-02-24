@@ -790,6 +790,29 @@ START_TEST(test_s21_mult_number_8) {
 }
 END_TEST
 
+START_TEST(test_s21_mult_number_9) {
+  matrix_t A = {0};
+  matrix_t result = {0};
+  int fail1 = s21_create_matrix(3, 3, &A);
+  A.matrix[0][0] = 1;
+  A.matrix[0][1] = 2;
+  A.matrix[0][2] = 3;
+
+  A.matrix[1][0] = 4;
+  A.matrix[1][1] = 5;
+  A.matrix[1][2] = 6;
+
+  A.matrix[2][0] = 7;
+  A.matrix[2][1] = 8;
+  A.matrix[2][2] = 9;
+  int fail2 = s21_mult_number(&A, INFINITY, &result);
+  ck_assert_int_eq(fail1, 0);
+  ck_assert_int_eq(fail2, 2);
+  s21_remove_matrix(&A);
+  s21_remove_matrix(&result);
+}
+END_TEST
+
 START_TEST(test_s21_mult_matrix_1) {
   matrix_t A = {0};
   matrix_t B = {0};
@@ -1668,6 +1691,7 @@ int main() {
   tcase_add_test(tc1_1, test_s21_mult_number_6);
   tcase_add_test(tc1_1, test_s21_mult_number_7);
   tcase_add_test(tc1_1, test_s21_mult_number_8);
+  tcase_add_test(tc1_1, test_s21_mult_number_9);
 
   tcase_add_test(tc1_1, test_s21_mult_matrix_1);
   tcase_add_test(tc1_1, test_s21_mult_matrix_2);
